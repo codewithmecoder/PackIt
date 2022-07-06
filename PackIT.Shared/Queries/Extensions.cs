@@ -1,17 +1,17 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PackIT.Abstraction.Commands;
+using PackIT.Abstraction.Queries;
 using System.Reflection;
 
-namespace PackIT.Shared.Commands;
+namespace PackIT.Shared.Queries;
 
 public static class Extensions
 {
-    public static IServiceCollection AddCommands(this IServiceCollection services)
+    public static IServiceCollection AddQueries(this IServiceCollection services)
     {
         var assembly = Assembly.GetCallingAssembly();
-        services.AddSingleton<ICommandDispatcher, InMemoryCommandDispatcher>();
+        services.AddSingleton<IQueryDispatcher, InMemoryQueryDispatcher>();
         services.Scan(s => s.FromAssemblies(assembly)
-            .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
+            .AddClasses(c => c.AssignableTo(typeof(IQueryHandler<,>)))
             .AsImplementedInterfaces()
             .WithScopedLifetime());
         return services;

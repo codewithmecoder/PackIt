@@ -4,7 +4,7 @@ public class AggregateRoot<T>
 {
     public T? Id { get; set; }
     public int Version { get; protected set; }
-    public IEnumerable<IDomainEvent>? Events { get; set; }
+    public IEnumerable<IDomainEvent> Events => _events;
 
     private readonly List<IDomainEvent> _events = new();
     private bool _versionIncremented;

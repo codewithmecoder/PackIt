@@ -9,13 +9,13 @@ namespace PackIT.Application.Commands.Handlers;
 
 public class CreatePackingListWithItemCommandHandler : ICommandHandler<CreatePackingListWithItemCommand>
 {
-    private readonly IPackingListService _readService;
+    private readonly IPackingListReadService _readService;
     private readonly IWeatherService _weatherService;
     private readonly IPackingListRepository _repository;
     private readonly IPackingListFactory _factory;
 
     public CreatePackingListWithItemCommandHandler(
-        IPackingListService packingListService,
+        IPackingListReadService packingListService,
         IPackingListRepository packingListRepository,
         IPackingListFactory packingListFactory,
         IWeatherService weatherService)
