@@ -1,8 +1,8 @@
 ﻿namespace PackIT.Abstraction.Domain;
 
-public class AggregateRoot<T>
+public abstract class AggregateRoot<T>
 {
-    public T? Id { get; set; }
+    public T? Id { get; protected set; }
     public int Version { get; protected set; }
     public IEnumerable<IDomainEvent> Events => _events;
 
@@ -25,7 +25,10 @@ public class AggregateRoot<T>
     protected void IncrementVersion()
     {
         if (_versionIncremented)
+        {
             return;
+        }
+
         Version++;
         _versionIncremented = true;
     }
