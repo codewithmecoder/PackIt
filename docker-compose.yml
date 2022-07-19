@@ -1,0 +1,8 @@
+version: '3.5'
+services:
+  e-stadium:
+    build: .
+    container_name: test
+    image: ${IMAGE_NAME}
+    ports:
+      - "8809:5420"
