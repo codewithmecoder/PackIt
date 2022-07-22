@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5490
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /src
@@ -19,5 +19,5 @@ RUN dotnet publish "PackIT.Api/PackIT.Api.csproj" -c Release -o /app/publish --n
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-
+ENV ASPNETCORE_URLS=http://*:5490
 ENTRYPOINT ["dotnet", "PackIT.Api.dll"]

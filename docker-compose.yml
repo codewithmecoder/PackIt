@@ -5,4 +5,4 @@ services:
     container_name: test
     image: ${IMAGE_NAME}
     ports:
-      - "8809:80"
+      - "5490:5490"
